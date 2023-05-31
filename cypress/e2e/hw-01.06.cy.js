@@ -14,5 +14,4 @@ it('Buying a goods', () => {
     cy.get('span.maintext').should('have.text', ' Checkout Confirmation');
     cy.get('#checkout_btn').click();
     cy.get('span.maintext').should('have.text', ' Your Order Has Been Processed!');
-    
 })
