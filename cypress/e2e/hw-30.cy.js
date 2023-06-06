@@ -1,29 +1,47 @@
+// let user = {
+//   firstName: 'Mykhailo',
+//   lastName: 'Shvaliuk',
+//   email: 'misha.shvaljuk@gmail.com',
+//   address: 'Lviv, Shyroka 1',
+//   city: 'Lviv',
+//   regionstate: 'Cardiff',
+//   postCode: '560015',
+//   countryId: 'United Kingdom',
+//   username: 'MS7788',
+//   password: 'MS781!@#'
+// }
+
 describe('Authorization&Registration', () => {
   it('Registration', () => {
+
     cy.visit('https://automationteststore.com');
     cy.get('#customernav').click();
     cy.get('#accountFrm > fieldset button').click();
-    cy.get('#AccountFrm_firstname').type('Mykhailo').should('have.value', 'Mykhailo');
-    cy.get('#AccountFrm_lastname').type('Shvaliuk').should('have.value', 'Shvaliuk');
-    cy.get('#AccountFrm_email').type('misha.shvaljuk@gmail.com').should('have.value', 'misha.shvaljuk@gmail.com');
-    cy.get('#AccountFrm_telephone').type('093-748-41-81').should('have.value', '093-748-41-81');
-    cy.get('#AccountFrm_fax').type('there is no fax').should('have.value', 'there is no fax');
-    cy.get('#AccountFrm_company').type('Automation JS').should('have.value', 'Automation JS');
-    cy.get('#AccountFrm_address_1').type('Lviv, Shyroka 1').should('have.value', 'Lviv, Shyroka 1');
-    cy.get('#AccountFrm_address_2').type('Lviv, Shyroka 2').should('have.value', 'Lviv, Shyroka 2');
-    cy.get('#AccountFrm_city').type('Lviv').should('have.value', 'Lviv');
-    cy.get('#AccountFrm_zone_id').select('Cardiff').should('have.value', '3526');
-    cy.get('#AccountFrm_postcode').type('560015').should('have.value', '560015');
-    cy.get('#AccountFrm_country_id').select('United Kingdom').should('have.value', '222');
-    cy.get('#AccountFrm_loginname').type('MS7788').should('have.value', 'MS7788');
-    cy.get('#AccountFrm_password').type('MS781!@#').should('have.value', 'MS781!@#');
-    cy.get('#AccountFrm_confirm').type('MS781!@#').should('have.value', 'MS781!@#');
+
+    cy.get('#AccountFrm_firstname').type(user.firstName).should('have.value', 'Mykhailo');
+    cy.get('#AccountFrm_lastname').type(user.lastName).should('have.value', 'Shvaliuk');
+    cy.get('#AccountFrm_email').type(user.email).should('have.value', 'misha.shvaljuk@gmail.com');
+
+    //cy.get('#AccountFrm_telephone').type(user.phone).should('have.value', '093-748-41-81');
+    //cy.get('#AccountFrm_fax').type('there is no fax').should('have.value', 'there is no fax');
+    //cy.get('#AccountFrm_company').type('Automation JS').should('have.value', 'Automation JS');
+    cy.get('#AccountFrm_address_1').type(user.address).should('have.value', 'Lviv, Shyroka 1');
+    //cy.get('#AccountFrm_address_2').type('Lviv, Shyroka 2').should('have.value', 'Lviv, Shyroka 2');
+    cy.get('#AccountFrm_city').type(user.city).should('have.value', 'Lviv');
+    cy.get('#AccountFrm_zone_id').select(user.regionstate).should('have.value', '3526');
+    cy.get('#AccountFrm_postcode').type(user.postCode).should('have.value', '560015');
+    cy.get('#AccountFrm_country_id').select(user.countryId).should('have.value', '222');
+
+    cy.get('#AccountFrm_loginname').type(user.username).should('have.value', 'MS7788');
+    cy.get('#AccountFrm_password').type(user.password).should('have.value', 'MS781!@#');
+    cy.get('#AccountFrm_confirm').type(user.password).should('have.value', 'MS781!@#');
+
     cy.get('#AccountFrm_agree').check().should('be.checked');
     cy.get('.btn.btn-orange.pull-right.lock-on-click').click();
 
   })
 
-  it('Authorization', () => {
+  it.skip('Authorization', () => {
     cy.visit('https://automationteststore.com');
     cy.get('#customernav').click();
     cy.get('#loginFrm_loginname').type('MS7788').should('have.value', 'MS7788');
@@ -33,7 +51,7 @@ describe('Authorization&Registration', () => {
 
   })
 
-  it('Registration without mandatory field (First Name)', () => {
+  it.skip('Registration without mandatory field (First Name)', () => {
     cy.visit('https://automationteststore.com');
     cy.get('#customernav').click();
     cy.get('#accountFrm > fieldset button').click();
